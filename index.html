@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoTask</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">ChronoTask</a>
+        <div class="menu-toggle">☰</div>
+        <div class="nav-links">
+            <a href="#">Features</a>
+            <a href="#">Resources</a>
+            <a href="#">Solutions</a>
+            <a href="#" class="sign-in-btn">Sign In</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="header">
+            <h1>ChronoTask</h1>
+            <p class="tagline">
+                Take notes in leap track of crucial details, <br>
+                and accomplish more tasks with ease.
+            </p>
+        </div>
+
+        <hr class="divider">
+
+        <h2 class="subheader">Think, plan, and track all in one place</h2>
+        <p class="description">Efficiently manage your tasks and boost productivity.</p>
+        
+        <a href="#" class="cta-button">Get free demo</a>
+            
+        <div class="gallery-container">
+            <div class="image-carousel">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="./images/Mask (1).png" alt="Progress Mask">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="./images/Mask.png" alt="To Do List">
+                    </div>
+                </div>
+                
+                <!-- Carousel Controls -->
+                <button class="carousel-control prev">❮</button>
+                <button class="carousel-control next">❯</button>
+            </div>
+        </div>
+
+        <div class="content-below-image">
+            <div class="task-section">
+                <h3 class="section-title">Future tasks</h3>
+                <ul class="task-list">
+                    <li class="task-item">New ideas for campaign
+                        <ul class="subtask-list">
+                            <li class="subtask-item">Step 10</li>
+                            <li class="subtask-item">Design PPT #4</li>
+                            <li class="subtask-item">Step 11</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <p class="integrations">100+ Integrations</p>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+            const nextButton = document.querySelector('.next');
+            const prevButton = document.querySelector('.prev');
+            
+            let currentIndex = 0;
+            const slideCount = slides.length;
+
+            function updateCarousel() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update active class
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentIndex);
+                });
+                
+                // Disable/enable buttons based on current index
+                prevButton.disabled = currentIndex === 0;
+                nextButton.disabled = currentIndex === slideCount - 1;
+            }
+            
+            nextButton.addEventListener('click', () => {
+                if (currentIndex < slideCount - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+            
+            prevButton.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+            
+            // Initialize
+            updateCarousel();
+        });
+    </script>
+</body>
+</html>
